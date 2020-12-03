@@ -37,7 +37,7 @@ async def spam(message: Message):
                 await message.client.send_sticker(
                     sticker=to_spam, chat_id=message.chat.id
                 )
-                await asyncio.sleep(0.1)
+                await asyncio.sleep(10)
             await S_LOG.log(
                 f"Spammed Sticker in Chat» {message.chat.title}, {sc} times"
             )
@@ -59,13 +59,13 @@ async def spam(message: Message):
                     await message.client.send_video(
                         video=to_spam, chat_id=message.chat.id
                     )
-                    await asyncio.sleep(0.1)
+                    await asyncio.sleep(10)
             elif replied.photo:
                 for _ in range(sc):
                     await message.client.send_photo(
                         photo=to_spam, chat_id=message.chat.id
                     )
-                    await asyncio.sleep(0.1)
+                    await asyncio.sleep(10)
             await S_LOG.log(f"Spammed Media in Chat» {message.chat.title}, {sc} times")
             await message.delete()
     elif replied and replied.text and not is_str:
@@ -80,7 +80,7 @@ async def spam(message: Message):
             await message.client.send_message(
                 text=replied.text, chat_id=message.chat.id
             )
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(10)
         await S_LOG.log(f"Spammed Text in Chat» {message.chat.title}, {sc} times")
         await message.delete()
     elif is_str:
@@ -94,7 +94,7 @@ async def spam(message: Message):
         await message.edit(f"Spamming {sc} times")
         for _ in range(sc):
             await message.client.send_message(text=spam_text, chat_id=message.chat.id)
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(10)
         await S_LOG.log(f"Spammed Text in Chat» {message.chat.title}, {sc} times")
         await message.delete()
     else:
